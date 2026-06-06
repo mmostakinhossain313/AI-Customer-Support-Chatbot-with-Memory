@@ -41,11 +41,7 @@ Place the workflow screenshot in the path above.
 
 # Workflow JSON
 
-JSON Location:
-
-AI-Customer-Support-Chatbot-with-Memory/json/AI Customer Support Chatbot with Memory.json
-
----
+![AI Customer Support Chatbot Workflow](Screenshot/Screenshot_workflow.png)
 
 # Project Structure
 
