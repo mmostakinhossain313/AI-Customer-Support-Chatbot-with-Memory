@@ -1,0 +1,12 @@
+# Episode 02 – Teaching the AI How to Behave Like a Support Representative
+
+In this episode, I improved the chatbot by adding customer support rules.
+
+Instead of allowing the AI to answer questions freely, I defined how the assistant should behave when interacting with customers.
+
+I added information about payment methods, delivery policies, return policies, and support hours. I also created rules to ensure that the assistant remained polite and professional during every conversation.
+
+One important lesson I learned was that AI should never claim it can perform actions that it cannot actually perform. For example, if the assistant does not have access to order tracking information, it should never say that it can check an order status.
+
+Key Learning:
+A professional AI assistant is not created by intelligence alone. It is created through clear business rules and responsible behavior.
