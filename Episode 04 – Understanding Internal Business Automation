@@ -1,0 +1,14 @@
+# Episode 04 – Understanding Internal Business Automation
+
+In this episode, I experimented with Gmail notifications.
+
+The objective was to understand how customer-facing automation and internal business automation work together.
+
+I tested a workflow where customer complaints could trigger an email notification. This helped me understand how businesses can automatically alert support teams when important customer issues appear.
+
+While testing, I discovered that when Gmail becomes the final node in a chat workflow, the chat interface displays the Gmail output instead of the AI response.
+
+Although simple, this lesson taught me an important workflow design principle.
+
+Key Learning:
+Customer responses and internal business actions should be designed separately whenever possible.
