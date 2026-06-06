@@ -1,0 +1,12 @@
+# Episode 06 – Adding Memory and Conversation Awareness
+
+In this episode, I connected a Simple Memory node to the AI Agent.
+
+Before adding memory, the chatbot could answer questions but could not remember previous messages. After connecting memory, the assistant became capable of maintaining context throughout a conversation.
+
+I tested this by sharing my name, discussing another topic, and then asking the assistant to recall my name. The AI successfully remembered the information.
+
+This helped me understand the difference between business knowledge and conversation memory. Business knowledge comes from prompts and rules, while memory comes from previous messages within the conversation.
+
+Key Learning:
+Memory transforms a chatbot from a simple question-answer system into a conversational assistant.
