@@ -1,0 +1,12 @@
+# Episode 03 – Complaint Handling and Human Escalation
+
+In this episode, I focused on situations where AI should stop trying to solve everything on its own.
+
+Real customers sometimes become frustrated, request refunds, or ask to speak with a human representative. These situations require a different approach from normal support questions.
+
+I added escalation rules so the assistant could recognize complaints and politely recommend contacting the support team.
+
+This episode helped me understand that a good support assistant does not try to answer every question. Sometimes the best response is directing the customer to the right person.
+
+Key Learning:
+A professional chatbot knows when to answer and when to escalate.
