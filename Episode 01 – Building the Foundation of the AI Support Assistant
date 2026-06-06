@@ -1,0 +1,12 @@
+# Episode 01 – Building the Foundation of the AI Support Assistant
+
+In this episode, I created the foundation of the AI Customer Support Assistant.
+
+Before building any advanced automation, I wanted to understand how an AI Agent works inside n8n. The goal was not to build a complex chatbot immediately. Instead, I focused on creating a simple workflow that could receive customer messages and generate responses using OpenAI.
+
+The most important lesson from this episode was understanding the role of the AI Agent. I learned that the AI Agent acts as the brain of the workflow. Customer messages enter the workflow, the AI processes the request, and then generates a response.
+
+At this stage, the assistant could answer questions, but it did not follow business rules and had no memory of previous conversations.
+
+Key Learning:
+An AI Agent is not just a chatbot. It is the decision-making component of an automation workflow.
