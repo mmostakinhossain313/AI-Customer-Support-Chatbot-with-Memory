@@ -1,0 +1,14 @@
+# Episode 05 – Intent Detection and Customer Understanding
+
+In this episode, I taught the AI to identify customer intent.
+
+Instead of only generating responses, the assistant now classifies messages into categories such as NORMAL, REFUND, COMPLAINT, and HUMAN_SUPPORT.
+
+This was a major improvement because businesses often need to take different actions depending on what the customer wants.
+
+For example, a refund request should follow a different process than a complaint or a normal question.
+
+Learning intent detection helped me understand how AI can support business decisions instead of simply answering questions.
+
+Key Learning:
+Understanding customer intent is often more valuable than generating a good answer.
