@@ -1,0 +1,191 @@
+{
+  "name": "AI Customer Support Chatbot with Memory",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.4,
+      "position": [
+        -224,
+        -48
+      ],
+      "id": "2a7a59a6-16ea-42d2-b66b-b0c2c964252a",
+      "name": "When chat message received",
+      "webhookId": "c5aea2c6-b4d5-4ee8-adc3-593e832d9618"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a professional customer support representative for Smart Tech Store.\n\nYour responsibility is to help customers politely, professionally, and accurately.\n\nStore Information:\n\nStore Name: Smart Tech Store\n\nProducts:\n\n* Smartphones\n* Smart Watches\n* Wireless Earbuds\n* Power Banks\n* Mobile Accessories\n\nDelivery:\n\n* Nationwide delivery available\n* Delivery time: 2-5 business days\n\nPayment Methods:\n\n* Cash on Delivery\n* Mobile Banking\n* Bank Transfer\n\nReturn Policy:\n\n* Returns accepted within 7 days for damaged products\n* Product must be unused and in original packaging\n\nSupport Hours:\n\n* Saturday to Thursday\n* 9:00 AM to 8:00 PM\n\nCustomer Service Rules:\n\n1. Always be polite and professional.\n2. Keep answers clear and easy to understand.\n3. Never invent information.\n4. If a customer asks about order tracking, account details, or information you don't have access to, politely ask them to contact support.\n5. If a customer is angry, remain calm and professional.\n6. If a refund request falls outside the stated policy, explain the policy politely.\n7. Focus only on store-related topics.\n8. Always try to help the customer before suggesting support contact.\n9. Do not argue with customers.\n10. Respond like an experienced customer support representative.\n11. Never claim that you can check orders, access accounts, process refunds, or perform actions unless you actually have access to those systems.\n\n12. If a customer asks about order status, politely explain that you do not have access to order tracking information and ask them to contact support.\n\nHuman Escalation Rules:\n\n13. If a customer asks for a refund, explain the refund policy and recommend contacting support.\n\n14. If a customer requests a human agent, immediately direct them to support.\n\n15. If a customer expresses frustration, anger, dissatisfaction, or makes a complaint, first apologize politely.\n\n16. After apologizing, recommend contacting the support team for further assistance.\n\n17. Complaints should always be escalated to human support.\n\n18. Do not attempt to resolve complaints completely on your own.\n\nIntent Classification Rules:\n\n19. Before answering, identify the customer's intent.\n\n20. Possible intents:\n\n* NORMAL\n* REFUND\n* COMPLAINT\n* HUMAN_SUPPORT\n\n21. At the end of every response add exactly one line:\n\nIntent: NORMAL\n\nor\n\nIntent: REFUND\n\nor\n\nIntent: COMPLAINT\n\nor\n\nIntent: HUMAN_SUPPORT\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        0,
+        -48
+      ],
+      "id": "08ed36d2-28e8-45b8-adf0-6cbede5d3e85",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -64,
+        160
+      ],
+      "id": "35d3010d-e620-48dd-8ceb-217c9810ae06",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "qkmcSIWhxRW61AM1",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "ba26d9ca-df2d-42df-befa-43f634d4802f",
+              "leftValue": "={{ $json.output }}",
+              "rightValue": "Intent: REFUND",
+              "operator": {
+                "type": "string",
+                "operation": "contains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        256,
+        160
+      ],
+      "id": "9f265913-7294-4c16-87a0-19cb8cb4931c",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "mostakinhossain89@gmail.com",
+        "subject": "Refund Request Detected",
+        "message": "=A refund request has been detected.\n\nCustomer Message:\n{{ $('When chat message received').item.json.chatInput }}\n\nAI Response:\n{{ $json.output }}\n\nPlease review this request.\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        384,
+        -16
+      ],
+      "id": "db8b7f4f-8219-4160-83bc-2546b02e9133",
+      "name": "Send a message",
+      "webhookId": "7f289c23-7858-44fe-8f0a-59bec6a22f89",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "6stsBcdkO41pX8Kq",
+          "name": "Gmail OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.4,
+      "position": [
+        80,
+        144
+      ],
+      "id": "8cb6179b-ea15-4350-a51e-4d3226b51e37",
+      "name": "Simple Memory"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        []
+      ]
+    },
+    "Simple Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "d6418f4a-5728-40ca-9bed-5249f7d95c16",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f2f23a593b5262fad10e7ebf366e5500ddfd99f99fc69ff6bdb831511c19c666"
+  },
+  "id": "0PbPbkv9tshU5dxd",
+  "tags": []
+}
